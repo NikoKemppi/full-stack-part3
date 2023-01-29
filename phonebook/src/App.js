@@ -41,7 +41,7 @@ const App = () => {
           setNotification(`Added ${newName}`)
           setTimeout(() => {
             setNotification(null)
-          }, 5000)
+          }, 3000)
         })
     } else {
       if (window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
@@ -54,7 +54,7 @@ const App = () => {
             setNotification(`Changed phone number to ${newNumber}`)
             setTimeout(() => {
               setNotification(null)
-            }, 5000)
+            }, 3000)
             setNewName('')
             setNewPhoneNumber('')
           })
@@ -81,6 +81,13 @@ const App = () => {
       personService.deletePerson(id)
         .then(returnedPerson => {
           setPersons(persons.filter(person => person.id !== id))
+        })
+        .catch(error => {
+          setNotification(`Information of ${personName} has already been removed from the server`)
+          setTimeout(() => {
+            setNotification(null)
+          }, 5000)
+          setPersons(persons.filter(p => p.id !== id))
         })
     }
   }
