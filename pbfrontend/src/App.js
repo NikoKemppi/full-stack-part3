@@ -43,6 +43,13 @@ const App = () => {
             setNotification(null)
           }, 3000)
         })
+        .catch(error => {
+          console.log(error)
+          setNotification(`${error.response.data.error}`)
+          setTimeout(() => {
+            setNotification(null)
+          }, 5000)
+        })
     } else {
       if (window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
         const person = persons.find(p => p.id === id)
