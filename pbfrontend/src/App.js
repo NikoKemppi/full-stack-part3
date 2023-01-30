@@ -66,11 +66,19 @@ const App = () => {
             setNewPhoneNumber('')
           })
           .catch(error => {
-            setNotification(`Information of ${newName} has already been removed from the server`)
-            setTimeout(() => {
-              setNotification(null)
-            }, 5000)
-            setPersons(persons.filter(p => p.id !== id))
+            console.log(error.response.data.error)
+            if (error.response.data.error.includes("Validation failed")) {
+              setNotification(`${error.response.data.error}`)
+              setTimeout(() => {
+                setNotification(null)
+              }, 5000)
+            } else {
+              setNotification(`Information of ${newName} has already been removed from the server`)
+              setTimeout(() => {
+                setNotification(null)
+              }, 5000)
+              setPersons(persons.filter(p => p.id !== id))
+            }
           })
       }
     }

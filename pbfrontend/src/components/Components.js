@@ -3,7 +3,7 @@ import '../index.css'
 const Notification = ({message}) => {
     if (message === null) {
         return null
-    } if (message.includes("has already been removed from the server") || message.includes("Person validation failed")) {
+    } if (message.includes("has already been removed from the server") || message.includes("alidation failed") || message.includes("already existing")) {
         return (
             <div className='error'>
                 {message}
