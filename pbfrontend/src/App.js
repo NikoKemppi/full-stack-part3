@@ -97,13 +97,6 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.filter(person => person.id !== id))
         })
-        .catch(error => {
-          setNotification(`Information of ${personName} has already been removed from the server`)
-          setTimeout(() => {
-            setNotification(null)
-          }, 5000)
-          setPersons(persons.filter(p => p.id !== id))
-        })
     }
   }
 
