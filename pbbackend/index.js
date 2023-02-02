@@ -5,11 +5,11 @@ const cors = require('cors')
 const app = express()
 const Person = require('./models/person')
 
+app.use(express.static('build'))
 app.use(express.json())
 app.use(cors())
 morgan.token('person', function (req) { return JSON.stringify(req.body) })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :person'))
-app.use(express.static('build'))
 
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(people => {
@@ -17,7 +17,7 @@ app.get('/api/persons', (request, response) => {
   })
 })
 
-app.get('/api/info', (request, response) => {
+app.get('/info', (request, response) => {
   Person.find({}).count(function (err, count) {
     if (err) {
       console.log(err)
