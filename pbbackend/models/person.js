@@ -27,7 +27,7 @@ const personSchema = new mongoose.Schema({
       validator: function (v) {
         return (/^\d{8,}$/.test(v) || /^\d{3}-\d{5,}$/.test(v) || /^\d{2}-\d{6,}$/.test(v))
       },
-      message: props => `Phone number ${props.value} must be at least 8 characters long, and if separated into two parts by -, them the first part has 2 or 3 numbers`
+      message: props => `Phone number ${props.value} must be at least 8 numbers long, and if separated into two parts by -, then the first part has to have 2 or 3 numbers`
     }
   },
 })
